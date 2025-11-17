@@ -1,345 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>D2D Concept Portfolio</title>
-  <style>
-    /* Reset cơ bản */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[TÊN BẠN] | Portfolio Thiết Kế & Phát Triển</title>
 
-    body {
-      background-color: #fefefe;
-      color: #222;
-      line-height: 1.6;
-    }
+    <style>
+        /* Thiết lập cơ bản (Giữ nguyên như mẫu D2D trước) */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+        }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-    
-    /* Thiết lập màu cho liên kết số điện thoại */
-    .team-member a {
-        color: #222; /* Màu chữ đen */
-        text-decoration: underline;
-    }
-    .team-member a:hover {
-        color: #555;
-    }
+        /* 1. ĐỊNH NGHĨA GRID CONTAINER VÀ CÁC KHU VỰC (Màn hình lớn) */
+        .grid-container {
+            display: grid;
+            min-height: 100vh; 
+            grid-template-rows: auto auto 1fr auto; 
+            grid-template-columns: 1fr 300px;
+            grid-template-areas:
+                "header header"
+                "nav nav"
+                "main sidebar"
+                "footer footer";
+        }
 
-    /* Header */
-    header {
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ddd;
-      background-color: #fff;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+        /* 2. GÁN VỊ TRÍ VÀ PHONG CÁCH CHUNG */
+        .grid-header { 
+            grid-area: header; 
+            background: #20b2aa; 
+            color: white; 
+            padding: 20px; 
+            text-align: center;
+        }
 
-    header h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
+        .grid-nav { 
+            grid-area: nav; 
+            background: #333; 
+            padding: 10px 20px; 
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+        }
+        .grid-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        .grid-nav a:hover {
+            color: #20b2aa;
+        }
 
-    nav a {
-      margin-left: 20px;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
+        .grid-main { 
+            grid-area: main; 
+            padding: 30px; 
+            background: white; 
+        }
 
-    nav a:hover {
-      color: #555;
-    }
+        .grid-sidebar { 
+            grid-area: sidebar; 
+            padding: 30px 20px; 
+            background: #e9ecef; 
+            border-left: 1px solid #ddd;
+        }
 
-    /* Hero section */
-    .hero {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 60vh;
-      background-color: #f5f5f5;
-      text-align: center;
-      padding: 0 20px;
-    }
+        .grid-footer { 
+            grid-area: footer; 
+            background: #495057; 
+            color: white; 
+            padding: 15px; 
+            text-align: center;
+            font-size: 0.9em;
+        }
 
-    .hero h2 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
+        /* 3. PHONG CÁCH NỘI DUNG */
+        .main-section {
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 4px solid #20b2aa; 
+            border-radius: 5px;
+            background: #fdfdff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        .grid-sidebar h3 {
+            color: #20b2aa;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+        }
+        .grid-sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .grid-sidebar li {
+            margin-bottom: 8px;
+            padding: 8px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
 
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 600px;
-    }
-
-    /* Portfolio Section */
-    .portfolio {
-      padding: 60px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .portfolio h2 {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 1.8rem;
-    }
-
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .project {
-      background-color: #fff;
-      border: 1px solid #eee;
-      overflow: hidden;
-      border-radius: 6px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .project img {
-      width: 100%;
-      display: block;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .project-info {
-      padding: 15px;
-    }
-
-    .project-info h3 {
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-    }
-
-    .project-info p {
-      font-size: 0.95rem;
-      color: #555;
-    }
-
-    .project:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-
-    /* About Section */
-    .about {
-      padding: 60px 20px;
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .about h2 {
-      margin-bottom: 30px;
-      font-size: 1.8rem;
-    }
-    
-    /* Styling cho phần Giới thiệu KTS (ĐÃ SỬA ĐỔI) */
-    .team-member {
-      margin-top: 40px;
-      padding: 30px;
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      text-align: left;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-
-      /* Bổ sung để bố cục ảnh và chữ cạnh nhau */
-      display: flex; 
-      gap: 30px; /* Khoảng cách giữa ảnh và nội dung */
-      align-items: flex-start; /* Canh trên cùng */
-    }
-
-    .team-member img {
-      width: 150px; /* Kích thước ảnh */
-      height: 150px;
-      border-radius: 50%; /* Ảnh tròn */
-      object-fit: cover;
-      flex-shrink: 0; /* Ảnh không bị co lại */
-    }
-
-    .team-member h3 {
-      font-size: 1.4rem;
-      color: #222;
-      margin-bottom: 15px;
-      border-bottom: 2px solid #222;
-      display: inline-block;
-      padding-bottom: 5px;
-    }
-
-    .team-member p {
-      margin-bottom: 10px;
-      font-size: 1rem;
-      line-height: 1.8;
-      color: #222;
-    }
-
-    /* Contact Section */
-    .contact {
-      padding: 60px 20px;
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .contact h2 {
-      margin-bottom: 30px;
-      font-size: 1.8rem;
-    }
-
-    .contact form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .contact input, .contact textarea {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
-    }
-
-    .contact button {
-      padding: 12px;
-      border: none;
-      background-color: #222;
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .contact button:hover {
-      background-color: #555;
-    }
-
-    /* Footer */
-    footer {
-      padding: 20px;
-      text-align: center;
-      border-top: 1px solid #ddd;
-      font-size: 0.9rem;
-      color: #777;
-    }
-    
-    /* Responsive cho di động */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-      }
-
-      nav {
-        margin-top: 10px;
-      }
-      
-      /* Xếp ảnh KTS lên nội dung */
-      .team-member {
-        flex-direction: column; 
-        align-items: center; 
-        text-align: center;
-      }
-    }
-
-  </style>
+        /* 4. ĐIỀU CHỈNH ĐÁP ỨNG (RESPONSIVE) */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr; 
+                grid-template-areas:
+                    "header"
+                    "nav"
+                    "main"
+                    "sidebar"
+                    "footer";
+            }
+            .grid-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .grid-sidebar {
+                border-left: none;
+                border-top: 1px solid #ddd; 
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <h1>D2D Concept</h1>
-    <nav>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+    <div class="grid-container">
+        
+        <header class="grid-header">
+            <h1>[TÊN CỦA BẠN]</h1>
+            <p>[CHỨC DANH/VỊ TRÍ HIỆN TẠI] | Chuyên gia Design-to-Development</p>
+        </header>
 
-  <section class="hero">
-    <h2>Minimalist Architecture & Design</h2>
-    <p>Creating spaces that reflect simplicity, functionality, and the soul of materials.</p>
-  </section>
+        <nav class="grid-nav">
+            <a href="#about">Về Tôi</a>
+            <a href="#skills">Kỹ Năng</a>
+            <a href="#portfolio">Dự Án (Portfolio)</a>
+            <a href="#contact">Liên Hệ</a>
+        </nav>
 
-  <section class="portfolio" id="portfolio">
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="project">
-        <img src="https://source.unsplash.com/400x300/?architecture,interior" alt="Project 1">
-        <div class="project-info">
-          <h3>Project One</h3>
-          <p>A minimalist interior design project emphasizing natural light and textures.</p>
-        </div>
-      </div>
-      <div class="project">
-        <img src="https://source.unsplash.com/400x300/?architecture,building" alt="Project 2">
-        <div class="project-info">
-          <h3>Project Two</h3>
-          <p>Thoroughly crafted exterior design combining raw materials with modern lines.</p>
-        </div>
-      </div>
-      <div class="project">
-        <img src="https://source.unsplash.com/400x300/?architecture,design" alt="Project 3">
-        <div class="project-info">
-          <h3>Project Three</h3>
-          <p>Minimalist workspace design balancing open space and functionality.</p>
-        </div>
-      </div>
+        <main class="grid-main">
+            <h2>Giới Thiệu Cá Nhân</h2>
+            <p><strong>[ĐIỀN TÓM TẮT VỀ BẢN THÂN VÀ MỤC TIÊU NGHỀ NGHIỆP Ở ĐÂY. VÍ DỤ:</strong> Với X năm kinh nghiệm trong lĩnh vực D2D, tôi kết hợp niềm đam mê thiết kế giao diện người dùng (UI) với khả năng phát triển Front-end mạnh mẽ để tạo ra các sản phẩm số hoạt động hiệu quả và thu hút.]</p>
+            
+            <h2 id="portfolio" style="margin-top: 40px;">Các Dự Án Đã Thực Hiện (D2D)</h2>
+
+            <section class="main-section">
+                <h3>[Tên Dự Án 1] - [Thời gian thực hiện]</h3>
+                <p><strong>[Mô tả vai trò của bạn, công nghệ sử dụng, và thành tựu/kết quả.]</strong> (Ví dụ: Thiết kế UX/UI cho ứng dụng di động, sau đó tự phát triển bằng React Native. Đạt được 10.000 lượt tải trong quý đầu tiên.)</p>
+            </section>
+
+            <section class="main-section">
+                <h3>[Tên Dự Án 2] - [Thời gian thực hiện]</h3>
+                <p><strong>[Mô tả vai trò của bạn, công nghệ sử dụng, và thành tựu/kết quả.]</strong> (Ví dụ: Phát triển hệ thống quản lý nội dung tùy chỉnh sử dụng Vue.js và Node.js. Giảm thời gian nhập liệu đi 40%.)</p>
+            </section>
+        </main>
+
+        <aside class="grid-sidebar">
+            <h3 id="contact">Thông Tin Liên Hệ</h3>
+            <ul>
+                <li>Email: <strong>[ĐIỀN EMAIL CỦA BẠN]</strong></li>
+                <li>Điện thoại: <strong>[ĐIỀN SỐ ĐIỆN THOẠI]</strong></li>
+                <li>LinkedIn: <a href="[ĐIỀN URL LINKEDIN]" target="_blank">LinkedIn của tôi</a></li>
+                <li>GitHub/Portfolio: <a href="[ĐIỀN URL GITHUB/WEBSITE]" target="_blank">Xem Mã/Dự án</a></li>
+            </ul>
+
+            <h3 id="skills" style="margin-top: 30px;">Bộ Kỹ Năng (Skills)</h3>
+            <ul>
+                <li>Thiết kế: Figma, Sketch, Adobe XD</li>
+                <li>Frontend: HTML5, CSS3 (Grid/Flexbox), JavaScript (ES6+), React/Vue</li>
+                <li>Backend (Tùy chọn): Node.js, Python, [Ngôn ngữ khác]</li>
+                <li>Công cụ khác: Git, Webpack, Docker</li>
+            </ul>
+        </aside>
+
+        <footer class="grid-footer">
+            <p>Được thiết kế và phát triển bởi [TÊN BẠN] &copy; 2024</p>
+        </footer>
+
     </div>
-  </section>
-
-  <section class="about" id="about">
-    <h2>Về Chúng Tôi (D2D Concept)</h2>
-    
-    <p style="text-align: center; max-width: 800px; margin: 20px auto 40px;">D2D Concept không theo đuổi những thiết kế hào nhoáng, mà tìm về sự chân thật của vật liệu, sự tĩnh lặng của không gian và vẻ đẹp của ánh sáng tự nhiên. Mỗi công trình chúng tôi tạo ra không chỉ là một kiến trúc, mà là một tổ ấm bình dị, bền bỉ cùng thời gian.</p>
-
-    <div class="team-member">
-      <img src="https://source.unsplash.com/150x150/?portrait,man,architect" alt="KTS Phạm Thái Dương"> 
-      <div>
-        <h3>Kiến Trúc Sư: Phạm Thái Dương</h3>
-        <p><strong>Vai trò:</strong> Đồng Sáng lập & Kiến trúc sư Trưởng</p>
-        <p><strong>Liên hệ:</strong> <a href="tel:0912345678">0912.345.678</a></p> <p><strong>Chuyên môn & Kinh nghiệm:</strong> 6 năm kinh nghiệm trong lĩnh vực thiết kế. Chuyên sâu về Nhà ở dân dụng, Biệt thự nghỉ dưỡng, Công trình công cộng và Thiết kế Cảnh quan hài hòa với tự nhiên.</p>
-      </div>
-    </div>
-    
-    <div class="team-member">
-      <img src="https://source.unsplash.com/150x150/?portrait,man,designer" alt="KTS Bùi Anh Dũng">
-      <div>
-        <h3>Kiến Trúc Sư: Bùi Anh Dũng</h3>
-        <p><strong>Vai trò:</strong> Đồng Sáng lập & Kiến trúc sư Trưởng</p>
-        <p><strong>Liên hệ:</strong> <a href="tel:0987654321">0987.654.321</a></p> <p><strong>Chuyên môn & Kinh nghiệm:</strong> 6 năm kinh nghiệm, cùng chuyên môn với KTS Phạm Thái Dương. Đảm nhận việc triển khai kỹ thuật và quản lý chất lượng dự án, đảm bảo thiết kế được hiện thực hóa một cách chính xác và hiệu quả nhất.</p>
-      </div>
-    </div>
-    
-  </section>
-
-  <section class="contact" id="contact">
-    <h2>Contact</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
-
-  <footer>
-    &copy; 2025 D2D Concept. All rights reserved.
-  </footer>
 
 </body>
 </html>
