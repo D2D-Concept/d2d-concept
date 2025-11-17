@@ -23,6 +23,15 @@
       text-decoration: none;
       color: inherit;
     }
+    
+    /* Thiết lập màu cho liên kết số điện thoại */
+    .team-member a {
+        color: #222; /* Màu chữ đen */
+        text-decoration: underline;
+    }
+    .team-member a:hover {
+        color: #555;
+    }
 
     /* Header */
     header {
@@ -140,10 +149,45 @@
       margin-bottom: 30px;
       font-size: 1.8rem;
     }
+    
+    /* Styling cho phần Giới thiệu KTS (ĐÃ SỬA ĐỔI) */
+    .team-member {
+      margin-top: 40px;
+      padding: 30px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-align: left;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 
-    .about p {
-      font-size: 1.05rem;
-      color: #555;
+      /* Bổ sung để bố cục ảnh và chữ cạnh nhau */
+      display: flex; 
+      gap: 30px; /* Khoảng cách giữa ảnh và nội dung */
+      align-items: flex-start; /* Canh trên cùng */
+    }
+
+    .team-member img {
+      width: 150px; /* Kích thước ảnh */
+      height: 150px;
+      border-radius: 50%; /* Ảnh tròn */
+      object-fit: cover;
+      flex-shrink: 0; /* Ảnh không bị co lại */
+    }
+
+    .team-member h3 {
+      font-size: 1.4rem;
+      color: #222;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #222;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .team-member p {
+      margin-bottom: 10px;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #222;
     }
 
     /* Contact Section */
@@ -194,32 +238,8 @@
       font-size: 0.9rem;
       color: #777;
     }
-/* Styling cho phần Giới thiệu KTS */
-.team-member {
-  margin-top: 40px;
-  padding: 30px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  text-align: left;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-
-.team-member h3 {
-  font-size: 1.4rem;
-  color: #222;
-  margin-bottom: 15px;
-  border-bottom: 2px solid #222;
-  display: inline-block;
-  padding-bottom: 5px;
-}
-
-.team-member p {
-  margin-bottom: 10px;
-  font-size: 1rem;
-  line-height: 1.8;
-  color: #222;
-}
+    
+    /* Responsive cho di động */
     @media (max-width: 768px) {
       header {
         flex-direction: column;
@@ -227,6 +247,13 @@
 
       nav {
         margin-top: 10px;
+      }
+      
+      /* Xếp ảnh KTS lên nội dung */
+      .team-member {
+        flex-direction: column; 
+        align-items: center; 
+        text-align: center;
       }
     }
 
@@ -275,11 +302,40 @@
     </div>
   </section>
 
- <section class="about" id="about">
-    <h2>About Me</h2>
-    <p>I am a minimalist architect passionate about crafting spaces that tell stories through textures, light, and form.
-My design philosophy is to combine simplicity with emotional impact.</p>
-</section>
+  <section class="about" id="about">
+    <h2>Về Chúng Tôi (D2D Concept)</h2>
+    
+    <p style="text-align: center; max-width: 800px; margin: 20px auto 40px;">D2D Concept không theo đuổi những thiết kế hào nhoáng, mà tìm về sự chân thật của vật liệu, sự tĩnh lặng của không gian và vẻ đẹp của ánh sáng tự nhiên. Mỗi công trình chúng tôi tạo ra không chỉ là một kiến trúc, mà là một tổ ấm bình dị, bền bỉ cùng thời gian.</p>
+
+    <div class="team-member">
+      <img src="https://source.unsplash.com/150x150/?portrait,man,architect" alt="KTS Phạm Thái Dương"> 
+      <div>
+        <h3>Kiến Trúc Sư: Phạm Thái Dương</h3>
+        <p><strong>Vai trò:</strong> Đồng Sáng lập & Kiến trúc sư Trưởng</p>
+        <p><strong>Liên hệ:</strong> <a href="tel:0912345678">0912.345.678</a></p> <p><strong>Chuyên môn & Kinh nghiệm:</strong> 6 năm kinh nghiệm trong lĩnh vực thiết kế. Chuyên sâu về Nhà ở dân dụng, Biệt thự nghỉ dưỡng, Công trình công cộng và Thiết kế Cảnh quan hài hòa với tự nhiên.</p>
+      </div>
+    </div>
+    
+    <div class="team-member">
+      <img src="https://source.unsplash.com/150x150/?portrait,man,designer" alt="KTS Bùi Anh Dũng">
+      <div>
+        <h3>Kiến Trúc Sư: Bùi Anh Dũng</h3>
+        <p><strong>Vai trò:</strong> Đồng Sáng lập & Kiến trúc sư Trưởng</p>
+        <p><strong>Liên hệ:</strong> <a href="tel:0987654321">0987.654.321</a></p> <p><strong>Chuyên môn & Kinh nghiệm:</strong> 6 năm kinh nghiệm, cùng chuyên môn với KTS Phạm Thái Dương. Đảm nhận việc triển khai kỹ thuật và quản lý chất lượng dự án, đảm bảo thiết kế được hiện thực hóa một cách chính xác và hiệu quả nhất.</p>
+      </div>
+    </div>
+    
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Contact</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
 
   <footer>
     &copy; 2025 D2D Concept. All rights reserved.
