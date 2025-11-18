@@ -265,12 +265,3 @@ a:hover {
 }
 
 /* ... (Footer và các phần khác) ... */
-:root {
-  --bs-body-bg: #111;
-  --bs-body-color: #e5e5e5;
-}
-
-body {
-  background-color: var(--bs-body-bg);
-  color: var(--bs-body-color);
-}
