@@ -2,15 +2,14 @@
 /*!
 * Start Bootstrap - Grayscale v7.0.6 (https://startbootstrap.com/theme/grayscale)
 * Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-grayscale/blob/master/LICENSE)
+* Licensed under MIT
 */
+
 /*!
- * Bootstrap  v5.2.3 (https://getbootstrap.com/)
- * Copyright 2011-2022 The Bootstrap Authors
- * Copyright 2011-2022 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ * Bootstrap  v5.2.3
  */
 :root {
+  /* --- Color palette --- */
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
   --bs-purple: #7464a1;
@@ -34,49 +33,29 @@
   --bs-gray-700: #495057;
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
+
+  /* --- Dark Mode Overrides --- */
+  --bs-body-bg: #111;            /* nền toàn trang */
+  --bs-body-color: #e5e5e5;      /* chữ sáng */
   --bs-primary: #64a19d;
-  --bs-secondary: #000;
-  --bs-success: #67c29c;
-  --bs-info: #1cabc4;
-  --bs-warning: #e4c662;
-  --bs-danger: #a16468;
-  --bs-light: #f8f9fa;
-  --bs-dark: #212529;
-  --bs-primary-rgb: 100, 161, 157;
-  --bs-secondary-rgb: 0, 0, 0;
-  --bs-success-rgb: 103, 194, 156;
-  --bs-info-rgb: 28, 171, 196;
-  --bs-warning-rgb: 228, 198, 98;
-  --bs-danger-rgb: 161, 100, 104;
-  --bs-light-rgb: 248, 249, 250;
-  --bs-dark-rgb: 33, 37, 41;
-  --bs-white-rgb: 255, 255, 255;
-  --bs-black-rgb: 0, 0, 0;
-  --bs-body-color-rgb: 255, 255, 255;
-  --bs-body-bg-rgb: 33, 37, 41;
-  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-secondary: #1a1a1a;
+  --bs-light: #343a40;
+  --bs-dark: #e5e5e5;
+  --bs-card-bg: #1a1a1a;         /* card */
+  --bs-link-color: #64a19d;
+  --bs-link-hover-color: #4f817e;
+
+  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+
   --bs-body-font-family: var(--bs-font-sans-serif);
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
-  --bs-body-color: var(--bs-gray-900);
-  --bs-body-bg: var(--bs-white);
+  --bs-border-radius: 0.375rem;
   --bs-border-width: 1px;
   --bs-border-style: solid;
-  --bs-border-color: #dee2e6;
-  --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
-  --bs-border-radius: 0.375rem;
-  --bs-border-radius-sm: 0.25rem;
-  --bs-border-radius-lg: 0.5rem;
-  --bs-border-radius-xl: 1rem;
-  --bs-border-radius-2xl: 2rem;
-  --bs-border-radius-pill: 50rem;
-  --bs-link-color: #64a19d;
-  --bs-link-hover-color: #4f817e;
-  --bs-code-color: #d63384;
-  --bs-highlight-bg: #fff3cd;
+  --bs-border-color: #343a40;
 }
 
 *, ::after, ::before {
@@ -95,24 +74,19 @@ body {
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
-  text-align: var(--bs-body-text-align);
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  
-  /* Bổ sung/sửa: Đảm bảo nền của trang là màu tối */
-  background-color: #212529; 
-  color: #f8f9fa; 
 }
 
-/* ... (Các định nghĩa Bootstrap khác) ... */
-
 a {
-  color: #64a19d;
+  color: var(--bs-link-color);
   text-decoration: none;
 }
 
 a:hover {
-  color: #4f817e;
+  color: var(--bs-link-hover-color);
 }
 
 .bg-black {
@@ -120,21 +94,18 @@ a:hover {
 }
 
 .bg-light {
-    /* ĐÃ SỬA: Đổi màu nền từ trắng nhạt sang xám đậm cho khu vực Projects */
-    background-color: #343a40 !important; 
+  background-color: var(--bs-light) !important;
 }
 
+.text-dark,
 .text-black-50 {
-    /* ĐÃ SỬA: Đổi màu chữ từ đen sang trắng/xám nhạt khi nền đã là tối */
-    color: rgba(255, 255, 255, 0.5) !important;
+  color: var(--bs-body-color) !important;
 }
-
-/* ... (Các định nghĩa Bootstrap khác) ... */
 
 .btn {
   box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
   padding: 1.25rem 2rem;
-  font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "Varela Round", var(--bs-font-sans-serif);
   font-size: 80%;
   text-transform: uppercase;
   letter-spacing: 0.15rem;
@@ -142,8 +113,8 @@ a:hover {
 }
 
 .btn-primary {
-  background-color: #64a19d;
-  border-color: #64a19d;
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
 }
 
 .btn-primary:hover {
@@ -151,65 +122,59 @@ a:hover {
   border-color: #4f817e;
 }
 
-/* ... (Các định nghĩa chung của Grayscale) ... */
-
+/* Navbar */
 #mainNav {
   min-height: 3.5rem;
-  background-color: #000;
+  background-color: var(--bs-secondary);
 }
 
 #mainNav .navbar-toggler {
   font-size: 80%;
   padding: 0.8rem;
-  color: white;
+  color: var(--bs-body-color);
 }
 
 #mainNav .navbar-brand {
-  color: white;
+  color: var(--bs-body-color);
 }
 
 #mainNav .nav-link {
-  color: white;
+  color: var(--bs-body-color);
 }
 
 #mainNav .nav-link:hover {
-  color: #64a19d;
+  color: var(--bs-primary);
 }
 
-/* ... (Responsive cho Nav) ... */
-
+/* Masthead */
 .masthead {
   position: relative;
   width: 100%;
   height: auto;
   min-height: 35rem;
   padding: 15rem 0;
-  /* Giữ nguyên background hoặc thay thế */
-  background: linear-gradient(to bottom, rgba(33, 37, 41, 0.4) 0%, rgba(33, 37, 41, 0.9) 100%), url("../assets/img/bg-masthead.jpg");
+  background: linear-gradient(to bottom, rgba(17,17,17,0.4) 0%, rgba(17,17,17,0.9) 100%), url("../assets/img/bg-masthead.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
 }
 
-/* ... (CSS cho Header/Masthead) ... */
-
+/* About Section */
 .about-section {
   padding-top: 10rem;
-  background: linear-gradient(to bottom, #000 0%, #000 75%, #212529 100%);
+  background: linear-gradient(to bottom, #111 0%, #111 75%, #212529 100%);
 }
 
-/* ... (CSS cho Projects) ... */
-
+/* Projects Section */
 .projects-section .project-text h4 {
-    color: #f8f9fa !important; /* Đảm bảo tiêu đề dự án màu sáng */
+  color: #e5e5e5 !important;
 }
 
-/* ... (CSS cho Signup Section) ... */
-
+/* Signup Section */
 .signup-section {
   padding: 10rem 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 75%, #000 100%), url("../assets/img/bg-signup.jpg");
+  background: linear-gradient(to bottom, rgba(17,17,17,0.1) 0%, rgba(17,17,17,0.5) 75%, #111 100%), url("../assets/img/bg-signup.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -218,32 +183,34 @@ a:hover {
 .signup-section .form-signup input {
   box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
   padding: 1.25rem 2rem;
-  height: auto;
-  font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "Varela Round", var(--bs-font-sans-serif);
   font-size: 80%;
   text-transform: uppercase;
   letter-spacing: 0.15rem;
   border: 0;
 }
 
+/* Contact Section */
 .contact-section {
   padding-top: 5rem;
 }
 .contact-section .card {
   border: 0;
-  /* Đổi màu viền thẻ liên hệ cho nổi bật trên nền tối */
-  border-bottom: 0.25rem solid #64a19d; 
+  border-bottom: 0.25rem solid var(--bs-primary);
+  background-color: var(--bs-card-bg);
+  color: var(--bs-body-color);
 }
-.contact-section .card h4, .contact-section .card .h4 {
+.contact-section .card h4,
+.contact-section .card .h4 {
   font-size: 0.8rem;
-  font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "Varela Round", var(--bs-font-sans-serif);
   text-transform: uppercase;
   letter-spacing: 0.15rem;
-  color: #000; /* Giữ màu đen để nổi bật trên nền trắng của thẻ */
+  color: var(--bs-body-color);
 }
 .contact-section .card hr {
   opacity: 1;
-  border-color: #64a19d;
+  border-color: var(--bs-primary);
   border-width: 0.1rem;
   width: 30%;
 }
@@ -260,9 +227,15 @@ a:hover {
   background: rgba(255, 255, 255, 0.5);
   color: rgba(255, 255, 255, 0.8);
 }
-.contact-section .card .text-black-50 {
-    color: rgba(0, 0, 0, 0.5) !important; /* Giữ màu chữ đen cho nội dung thẻ liên hệ */
+
+/* Footer */
+footer {
+  background-color: var(--bs-secondary);
+  color: var(--bs-body-color);
 }
 
-/* ... (Footer và các phần khác) ... */
-
+/* General Card Patch */
+.card {
+  background-color: var(--bs-card-bg);
+  color: var(--bs-body-color);
+}
